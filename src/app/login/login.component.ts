@@ -20,7 +20,7 @@ export class LoginComponent {
     //console.log(this.username)
     if (this.username === 'sourav' && this.password === 'sourav') {
       //redirect to welcome page
-      this.router.navigate(['welcome'])
+      this.router.navigate(['welcome', this.username])
       this.invalidLogin = false
     } else {
       this.invalidLogin = true

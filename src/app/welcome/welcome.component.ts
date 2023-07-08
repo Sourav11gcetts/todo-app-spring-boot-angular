@@ -7,11 +7,16 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent implements OnInit{
+  name = ''
 
   //ActivatedRoute
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute) {
+
+  }
   ngOnInit() {
-    
+
+   // console.log(this.route.snapshot.params['name'])
+    this.name = this.route.snapshot.params['name']
   }
 
 }
