@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { TodoDataService } from '../service/data/todo-data.service';
 
 export class Todo {
@@ -22,36 +23,11 @@ export class ListTodosComponent implements OnInit{
   todos: Todo[] | undefined
 
   message: string | undefined
-  // = [
-  //   new Todo(1,'Learn DSA', false, new Date()),
-  //   new Todo(2,'Fullstack Development', false, new Date()),
-  //   new Todo(3,'Recursion', false, new Date()),
-  //   // {id:2, description:'Learn Angular'},
-  //   // {id:3, description:'Learn Spring Boot Well'},
-  //   // {id:4, description:'Learn Other Spring Modules'}
-  // ]
-  // todo = {
-  //   id : 1,
-  //   description : 'Learn Recursion'
-  // }
-  
-  // = [
-  //   new Todo(1,'Learn DSA', false, new Date()),
-  //   new Todo(2,'Fullstack Development', false, new Date()),
-  //   new Todo(3,'Recursion', false, new Date()),
-    
-  //   // {id:2, description:'Learn Angular'},
-  //   // {id:3, description:'Learn Spring Boot Well'},
-  //   // {id:4, description:'Learn Other Spring Modules'}
-  // ]
-
-  // todo = {
-  //   id : 1,
-  //   description : 'Learn Recursion'
-  // }
+ 
 
   constructor(
-    private todoService:TodoDataService
+    private todoService:TodoDataService,
+    private router:Router
   ) {
 
   }
@@ -68,6 +44,11 @@ export class ListTodosComponent implements OnInit{
       }
     )
   }
+  updateTodo(id:number) {
+    console.log(`update todo ${id}`)
+    this.router.navigate(['todos',id])
+  }
+
   deleteTodo(id:number) {
     console.log(`delete todo ${id}`)
     this.todoService.deleteTodo('sourav',id).subscribe(
@@ -78,5 +59,7 @@ export class ListTodosComponent implements OnInit{
       }
     )
   }
+
+
 
 }
