@@ -3,12 +3,15 @@
 <!-- form-group was not working for me -->
     <fieldset class="mb-3">
         <label>Description</label>
-        <input type="text" class="form-control" name="description" required="required">
+        <input type="text" [(ngModel)] ="todo.description" class="form-control" name="description" required="required">
     </fieldset>
 
     <fieldset class="mb-3">
         <label>TargetDate</label>
-        <input type="text" class="form-control" name="targetDate" required="required">
+        <input type="text" 
+        [ngModel] ="todo.targetDate | date:'yyyy-MM-dd'" 
+        (ngModelChange)="todo.targetDate = $event"
+        class="form-control" name="targetDate" required="required">
     </fieldset>
 
     <button class="btn btn-success">Save</button>
