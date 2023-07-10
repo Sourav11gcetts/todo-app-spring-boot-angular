@@ -52,10 +52,6 @@ export class WelcomeComponent implements OnInit{
   }
 
   handleErrorResponse(error: any) {
-    console.log(error)
-    console.log(error.error)
-    console.log(error.error.message)
-
     this.welcomeMessageFromService = error.error.message;
   }
 
