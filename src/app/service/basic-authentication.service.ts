@@ -1,6 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
+
+export const TOKEN = 'token'
+export const AUTHENTICATED_USER = 'authenticatedUser'
 //ready for dependency injection
 @Injectable({
   providedIn: 'root'
@@ -22,7 +25,7 @@ export class BasicAuthenticationService {
       map(
         data => {
           sessionStorage.setItem('authenticatedUser',username);
-          sessionStorage.setItem('token',basicAuthHeaderString);
+          sessionStorage.setItem(TOKEN,basicAuthHeaderString);
           return data;
         }
       )
@@ -37,7 +40,7 @@ export class BasicAuthenticationService {
 
   getAuthenticatedToken() {
     if(this.getAuthenticatedUser())
-      return sessionStorage.getItem('token');
+      return sessionStorage.getItem(TOKEN);
     return null;
   }
 
@@ -48,7 +51,7 @@ export class BasicAuthenticationService {
 
   logout() {
     sessionStorage.removeItem('authenticatedUser');
-    sessionStorage.removeItem('token');
+    sessionStorage.removeItem(TOKEN);
   }
 }
 
