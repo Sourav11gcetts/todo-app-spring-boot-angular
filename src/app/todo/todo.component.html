@@ -1,18 +1,19 @@
 <h1>Todo</h1>
 <div class="container">
-<!-- form-group was not working for me -->
-    <fieldset class="mb-3">
-        <label>Description</label>
-        <input type="text" [(ngModel)] ="todo.description" class="form-control" name="description" required="required">
-    </fieldset>
+    <!-- form-group was not working for me -->
+    <form (ngSubmit)="!todoForm.invalid && saveTodo()" #todoForm ="ngForm">
+        <fieldset class="mb-3">
+            <label>Description</label>
+            <input type="text" [(ngModel)]="todo.description" class="form-control" name="description"
+                required="required">
+        </fieldset>
 
-    <fieldset class="mb-3">
-        <label>TargetDate</label>
-        <input type="text" 
-        [ngModel] ="todo.targetDate | date:'yyyy-MM-dd'" 
-        (ngModelChange)="todo.targetDate = $event"
-        class="form-control" name="targetDate" required="required">
-    </fieldset>
+        <fieldset class="mb-3">
+            <label>TargetDate</label>
+            <input type="text" [ngModel]="todo.targetDate | date:'yyyy-MM-dd'"
+                (ngModelChange)="todo.targetDate = $event" class="form-control" name="targetDate" required="required">
+        </fieldset>
 
-    <button class="btn btn-success" (click)="saveTodo()">Save</button>
+        <button ype="submit" class="btn btn-success">Save</button>
+    </form>
 </div>
