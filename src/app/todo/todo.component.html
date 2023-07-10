@@ -1,16 +1,19 @@
 <h1>Todo</h1>
 <div class="container">
+    <div class="alert alert-warning" *ngIf="todoForm.dirty && todoForm.invalid">Enter <span style="color: red;">valid</span> values</div>
+    <div class="alert alert-warning" *ngIf="todoForm.dirty && targetDate.invalid">Enter valid target date <span style="color: #00bbff;">valid</span> values</div>
+    <div class="alert alert-warning" *ngIf="todoForm.dirty && description.invalid">Enter Atleast 5 characters <span style="color: rgb(171, 46, 46);">valid</span> values</div>
     <!-- form-group was not working for me -->
     <form (ngSubmit)="!todoForm.invalid && saveTodo()" #todoForm ="ngForm">
         <fieldset class="mb-3">
             <label>Description</label>
-            <input type="text" [(ngModel)]="todo.description" class="form-control" name="description"
-                required="required">
+            <input type="text" #description="ngModel" [(ngModel)]="todo.description" class="form-control" name="description"
+                required="required" minlength="5">
         </fieldset>
 
         <fieldset class="mb-3">
             <label>TargetDate</label>
-            <input type="text" [ngModel]="todo.targetDate | date:'yyyy-MM-dd'"
+            <input type="date" #targetDate="ngModel" [ngModel]="todo.targetDate | date:'yyyy-MM-dd'"
                 (ngModelChange)="todo.targetDate = $event" class="form-control" name="targetDate" required="required">
         </fieldset>
 
