@@ -15,16 +15,16 @@ export class LoginComponent {
   invalidLogin = false
 
   constructor(private router: Router,
-    private hardCodedAuthenticationService:HardcodedAuthenticationService,
-    private basicAuthenticationService:BasicAuthenticationService) {
+    private hardCodedAuthenticationService: HardcodedAuthenticationService,
+    private basicAuthenticationService: BasicAuthenticationService) {
 
   }
-  
+
   handleLogin() {
     //console.log(this.username)
     //if (this.username === 'sourav' && this.password === 'sourav') {
-      if(this.hardCodedAuthenticationService.authenticate(this.username, this.password)) {
-    //redirect to welcome page
+    if (this.hardCodedAuthenticationService.authenticate(this.username, this.password)) {
+      //redirect to welcome page
       this.router.navigate(['welcome', this.username])
       this.invalidLogin = false
     } else {
@@ -32,10 +32,8 @@ export class LoginComponent {
     }
   }
 
-  handleBasicAuthLogin() {
-    //console.log(this.username)
-    //if (this.username === 'sourav' && this.password === 'sourav') {
-      this.basicAuthenticationService.executeAuthenticationService(this.username, this.password)
+  handleJWTLogin() {
+    this.basicAuthenticationService.executeJWTAuthenticationService(this.username, this.password)
       .subscribe(
         data => {
           console.log(data);
@@ -44,10 +42,27 @@ export class LoginComponent {
         },
         error => {
           console.log(error);
-          this.invalidLogin = true  
+          this.invalidLogin = true
         }
       )
-      
+
+  }
+  handleBasicAuthLogin() {
+    //console.log(this.username)
+    //if (this.username === 'sourav' && this.password === 'sourav') {
+    this.basicAuthenticationService.executeAuthenticationService(this.username, this.password)
+      .subscribe(
+        data => {
+          console.log(data);
+          this.router.navigate(['welcome', this.username])
+          this.invalidLogin = false
+        },
+        error => {
+          console.log(error);
+          this.invalidLogin = true
+        }
+      )
+
   }
 
 }
