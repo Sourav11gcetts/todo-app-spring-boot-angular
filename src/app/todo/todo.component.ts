@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { VirtualTimeScheduler } from 'rxjs';
 import { Todo } from '../list-todos/list-todos.component';
 import { TodoDataService } from '../service/data/todo-data.service';
 
@@ -32,7 +31,7 @@ export class TodoComponent implements OnInit {
   }
 
   saveTodo() {
-    if (this.id === -1) {
+    if (this.id == -1) {
       this.todoService.createTodo('sourav',this.todo)
       .subscribe(
         data => {
